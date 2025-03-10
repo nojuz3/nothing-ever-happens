@@ -1,0 +1,23 @@
+*{
+    background-color: lightblue;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+.container{
+    display: flex;
+    border: 0px;
+    background-color: lightblue;
+}
+h2,h3{
+    background-color: lightcoral;
+}
+div{
+    border: 2px solid black;
+    margin-left: 10px;
+    background-color: lightcoral;
+    margin-top: 10px;
+    height: fit-content;
+}
+img{
+    height: 250px;
+    width: 300px;
+}
