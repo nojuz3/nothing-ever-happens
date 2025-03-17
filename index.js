@@ -1,22 +1,6 @@
-// const container = document.querySelector(".button");
-// const button = document.createElement("button");
-// button.innerText = "Peep";
 
-// container.appendChild(button);
-
-// const imgel = document.createElement("img")
-
-// button.addEventListener("click",async function data() {
-//     const result = await fetch("https://coffee.alexflipnote.dev/random.json");
-//     console.log(result); // .url
-
-//     const img = await result.json();
-//     console.log(img);
-//     imgel.style.position = "fixed";
-//     imgel.src =img.file;
-//     container.appendChild(imgel);
-// });
-
+// https://www.omdbapi.com/?i=tt3896198&apikey=abc56403
+// https://www.omdbapi.com/apikey.aspx?VERIFYKEY=a8c7b43a-51f7-42a2-b27f-82e03403e65f
 const input = document.getElementById("input");
 const submit = document.getElementById("submit");
 const container = document.querySelector(".container")
@@ -28,45 +12,55 @@ const container = document.querySelector(".container")
 submit.addEventListener("click", async (e) => {
     e.preventDefault();
     const inputvalue = input.value.trim();
-    
-    try{
-        const result = await fetch(`https://restcountries.com/v3.1/name/${inputvalue}`);
-        const data = await result.json();
-        console.log(data);
 
+
+    if(inputvalue === ""){
         container.innerHTML = "";
+        const name = document.createElement("h2");
+        name.textContent = "Please enter a movie name";
 
-       
+        const divas = document.createElement("div");
+        divas.append(name)
 
-        if (input.value == "" ){
-            alert("Does not exist")
-        }else{
-            data.forEach((e) => {
+        container.append(divas);
 
-                const name = document.createElement("h2");
-                name.textContent = e.name.common;
+    }else{
+        try{
+            const result = await fetch(`http://www.omdbapi.com/?apikey=abc56403&t=${input.value}`);
+            const data = await result.json();
+            console.log(data);
     
-                const capital = document.createElement("h3");
-                capital.textContent = e.capital[0];
+
+            container.innerHTML = "";
+           
     
-                const img = document.createElement("img");
-                img.src = e.flags.png;
+                if(data.Response == "False"){
+                    const name = document.createElement("h2");
+                    name.textContent = "Does not exist";
+        
+                    const divas = document.createElement("div");
+                    divas.append(name)
+        
+                    container.append(divas);
+                }else{
+                    const name = document.createElement("h2");
+                    name.textContent = data.Title;
+        
+                    const date = document.createElement("h3");
+                    date.textContent = data.Released;
+        
+                    const img = document.createElement("img");
+                    img.src = data.Poster;
+        
+                    const divas = document.createElement("div");
+                    divas.append(name,date,img)
+        
+                    container.append(divas);
+                };
     
-                const divas = document.createElement("div");
-                divas.append(name,capital,img)
-    
-                container.append(divas);
-            });
+        }catch(err){
+            console.log(err);
         }
-        // data.forEach((e) => console.log(e.name.common));
-
-
-
-        // data.forEach((e) => console.log(e.capital[0]));
-
-        // data.forEach((e) => console.log(e.flags.png));
-
-    }catch(err){
-        console.log(err);
     }
+    
 });
