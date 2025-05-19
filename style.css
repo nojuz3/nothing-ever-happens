@@ -1,23 +1,35 @@
 *{
-    background-color: lightblue;
+    background-color: rgb(224, 247, 255);
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 .container{
     display: flex;
     border: 0px;
-    background-color: lightblue;
+    background-color: rgb(224, 247, 255);
+    flex-direction: column;
 }
+
+.container > div{
+    display: flex;
+    flex-direction: column;
+    text-wrap: nowrap;
+    width: 55rem;
+}
+
 h2,h3{
-    background-color: lightcoral;
+    background-color: white;
+    text-align: center;
 }
 div{
     border: 2px solid black;
     margin-left: 10px;
-    background-color: lightcoral;
+    background-color: white;
     margin-top: 10px;
     height: fit-content;
 }
 img{
+    display: block; 
+    margin: auto;
     height: 250px;
-    width: 300px;
+    width: 50%;
 }
