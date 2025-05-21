@@ -45,19 +45,32 @@ submit.addEventListener("click", async (e) => {
                 }else{
                     list.forEach(e => {
                         const name = document.createElement("h2");
+                        name.className = "name";
                         name.textContent = e.name;
                         
+                        const realname = document.createElement("h3");
+                        realname.className = "realname";
+                        realname.textContent = "Realname: " + e.biography["full-name"];
                         const stats = document.createElement("h3");
+                        stats.className = "stats";
+
                         for (const key in e.powerstats) {
                             stats.textContent += `${key}: ${e.powerstats[key]} `;
                         }
-            
+                        const race = document.createElement("h3");
+                        race.className = "race";
+                        race.textContent = "Race: " + e.appearance.race;
+
+                        const align = document.createElement("h3");
+                        align.className = "align";
+                        align.textContent = "Alignment: "+ e.biography.alignment
 
                         const img = document.createElement("img");
                         img.src = e.image.url;
             
                         const divas = document.createElement("div");
-                        divas.append(name,stats,img)
+                        divas.className = "cont";
+                        divas.append(name,realname,img,stats,race,align)
             
                         container.append(divas);
                     });
